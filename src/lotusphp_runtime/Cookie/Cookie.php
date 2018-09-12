@@ -34,7 +34,7 @@ class LtCookie
 	 * @param string $encryptedText 
 	 * @return string 
 	 */
-	protected function decrypt($encryptedText)
+	protected function alipayDecrypt($encryptedText)
 	{
 		$key = $this->secretKey;
 		$cryptText = base64_decode($encryptedText);
@@ -99,13 +99,13 @@ class LtCookie
 				$ret = array();
 				foreach($_COOKIE[$name] as $k => $v)
 				{
-					$v = $this->decrypt($v);
+					$v = $this->alipayDecrypt($v);
 					$ret[$k] = $v;
 				}
 			}
 			else
 			{
-				$ret = $this->decrypt($_COOKIE[$name]);
+				$ret = $this->alipayDecrypt($_COOKIE[$name]);
 			}
 		}
 		return $ret;
@@ -123,13 +123,13 @@ class LtCookie
 		{
 			foreach($value as $k => $v)
 			{
-				$v = $this->encrypt($v);
+				$v = $this->alipayEncrypt($v);
 				setcookie($name . '[' . $k . ']', $v, $expire, $path, $domain, $secure);
 			}
 		}
 		else
 		{
-			$value = $this->encrypt($value);
+			$value = $this->alipayEncrypt($value);
 			setcookie($name, $value, $expire, $path, $domain, $secure);
 		}
 	}
