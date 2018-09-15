@@ -9,7 +9,7 @@
             "email": "980569038@qq.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "1.0.0",
     "require": {
         "php": ">=7.1.3"
     },
